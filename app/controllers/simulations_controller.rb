@@ -19,13 +19,15 @@ class SimulationsController < ApplicationController
   
   def call_matlab
     
+    day = params[:day]
+    
     host = 'localhost'
     @client = Carrot.new(
     :host   => host
     )
     
     input_queue = @client.queue('input_queue')
-    input_queue.publish("2,2")
+    input_queue.publish(day);
     
     output_queue = @client.queue('output_queue')
     
@@ -44,7 +46,7 @@ class SimulationsController < ApplicationController
       
     end
     @array_returned = JSON.parse(result)
-    @array_actual =  LoadData.where("hour > ? and hour <= ?", 24*45,24*(45+1))
+    @array_actual =  LoadData.where("hour > ? and hour <= ?", 24*day.to_i,24*(day.to_i+1))
     respond_to do |format|
       format.json {
         render :json => {
