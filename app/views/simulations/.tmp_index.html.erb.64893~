@@ -1,0 +1,16 @@
+<html>
+
+	<body onload= plot_chart();>
+		Calling matlab function subhrajit_1(5,2) 
+		
+		<br />
+		<% @array_returned.each do |key,value| %>
+			<%= value %>
+			<br />
+		<% end %>
+	<div class="demo-container">
+	<div id="placeholder-forecast" class="demo-placeholder"></div>
+	</div>
+	
+	</body>
+</html>
